@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Talent Hub | Unity Models</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { background-color: #050505; color: #fff; overflow-y: auto; }
+    .portal-container { max-width: 800px; margin: 100px auto; padding: 40px; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 8px; font-family: 'Inter', sans-serif; font-size: 0.9rem; letter-spacing: 1px; color: #bca476; }
+    input, textarea, select { width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(188, 164, 118, 0.3); color: #fff; font-family: 'Inter', sans-serif; border-radius: 4px; }
+    input:focus, textarea:focus { outline: none; border-color: #bca476; }
+    .status-msg { margin-top: 20px; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+    .success { color: #4caf50; }
+    .error { color: #f44336; }
+    
+    #dashboard-section { display: none; }
+  </style>
+</head>
+<body>
+  <nav class="navbar" style="background: rgba(0,0,0,0.9);">
+    <div class="nav-content">
+      <div class="nav-logo">
+        <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: white;">
+          <img src="images/logo.png" alt="Unity Models" class="logo-img">
+          <span class="logo-text">UNITY MODELS</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="portal-container card-glass">
+    <h1 class="hero-title accent-text" style="font-size: 3rem; text-align: center; margin-bottom: 10px;">TALENT HUB</h1>
+    <p class="section-desc" id="subtitle" style="text-align: center; margin-bottom: 40px;">Manage your professional modeling portfolio and availability.</p>
+
+    <!-- Login Section -->
+    <div id="login-section">
+      <form id="login-form">
+        <div class="form-group">
+          <label>Enter your Telegram ID</label>
+          <input type="number" id="telegram-id" required placeholder="e.g. 123456789">
+          <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">You can find your ID in the @unitymodelsbot by typing /profile.</p>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Access Dashboard</button>
+        <div id="login-status" class="status-msg text-center"></div>
+      </form>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboard-section">
+      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 20px;">Welcome, <span id="model-name" class="accent-text">Model</span></h2>
+      
+      <form id="profile-form">
+        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div>
+            <label>Height (cm)</label>
+            <input type="number" id="height" placeholder="e.g. 175">
+          </div>
+          <div>
+            <label>Weight (kg)</label>
+            <input type="number" id="weight" placeholder="e.g. 55">
+          </div>
+        </div>
+
+        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div>
+            <label>Hair Color</label>
+            <input type="text" id="hair_color" placeholder="e.g. Blonde">
+          </div>
+          <div>
+            <label>Eye Color</label>
+            <input type="text" id="eye_color" placeholder="e.g. Blue">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Skills / Experience</label>
+          <input type="text" id="skills" placeholder="e.g. Runway, Commercial, Swimwear">
+        </div>
+
+        <div class="form-group">
+          <label>Portfolio Link (Instagram / Drive)</label>
+          <input type="url" id="portfolio_link" placeholder="https://instagram.com/yourhandle">
+        </div>
+
+        <button type="submit" class="btn btn-outline" style="width: 100%;">Save Profile Updates</button>
+        <div id="update-status" class="status-msg text-center"></div>
+      </form>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="hub.js"></script>
+</body>
+</html>
