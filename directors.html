@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casting Director Portal | Unity Models</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { background-color: #050505; color: #fff; overflow-y: auto; }
+    .portal-container { max-width: 800px; margin: 100px auto; padding: 40px; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 8px; font-family: 'Inter', sans-serif; font-size: 0.9rem; letter-spacing: 1px; color: #bca476; }
+    input, textarea, select { width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(188, 164, 118, 0.3); color: #fff; font-family: 'Inter', sans-serif; border-radius: 4px; }
+    input:focus, textarea:focus { outline: none; border-color: #bca476; }
+    .status-msg { margin-top: 20px; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+    .success { color: #4caf50; }
+    .error { color: #f44336; }
+  </style>
+</head>
+<body>
+  <nav class="navbar" style="background: rgba(0,0,0,0.9);">
+    <div class="nav-content">
+      <div class="nav-logo">
+        <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: white;">
+          <img src="images/logo.png" alt="Unity Models" class="logo-img">
+          <span class="logo-text">UNITY MODELS</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="portal-container card-glass">
+    <h1 class="hero-title accent-text" style="font-size: 3rem; text-align: center; margin-bottom: 10px;">DIRECTOR PORTAL</h1>
+    <p class="section-desc" style="text-align: center; margin-bottom: 40px;">Post a new casting call. It will be instantly broadcasted to matching models via Oscar AI and featured on our homepage.</p>
+
+    <form id="casting-form">
+      <div class="form-group">
+        <label>Casting Title</label>
+        <input type="text" id="title" required placeholder="e.g. Vogue Editorial Shoot">
+      </div>
+      
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text" id="location" required placeholder="e.g. New York, NY">
+      </div>
+
+      <div class="form-group">
+        <label>Date / Time</label>
+        <input type="text" id="date" required placeholder="e.g. October 15, 2026">
+      </div>
+
+      <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+          <label>Gender Required</label>
+          <select id="gender">
+            <option value="any">Any</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+          </select>
+        </div>
+        <div>
+          <label>Age Range</label>
+          <input type="text" id="age_range" placeholder="e.g. 18-25">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Detailed Description</label>
+        <textarea id="description" rows="5" required placeholder="Describe the shoot, brand, and exact model requirements..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width: 100%;">Post Casting Call</button>
+      <div id="status" class="status-msg text-center"></div>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="directors.js"></script>
+</body>
+</html>

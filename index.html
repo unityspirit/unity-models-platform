@@ -32,6 +32,7 @@
         <a href="#services" class="nav-link">Oscar AI</a>
         <a href="#portfolio" class="nav-link">Divisions</a>
         <a href="#process" class="nav-link">Process</a>
+        <a href="#castings" class="nav-link">Live Castings</a>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
       <div class="mobile-burger mobile-only" id="burger-menu">
@@ -46,6 +47,7 @@
     <a href="#services" class="drawer-link">Oscar AI</a>
     <a href="#portfolio" class="drawer-link">Divisions</a>
     <a href="#process" class="drawer-link">Process</a>
+    <a href="#castings" class="drawer-link">Live Castings</a>
     <a href="#contact" class="drawer-link">Contact</a>
   </div>
 
@@ -160,8 +162,23 @@
         </div>
       </section>
 
-      <!-- Section 4: Contact -->
-      <section class="page" data-index="4" id="contact">
+      <!-- Section 4: Live Castings -->
+      <section class="page" data-index="4" id="castings">
+        <div class="container">
+          <div class="reveal-3d">
+            <h2 class="section-title">UPCOMING EVENTS</h2>
+            <p class="section-desc">Live casting opportunities pulled directly from our database.</p>
+          </div>
+          
+          <div id="castings-container" class="grid-2 mt-4 portfolio-grid">
+            <!-- Castings will be injected here via JS -->
+            <p class="card-text">Loading live castings...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Contact -->
+      <section class="page" data-index="5" id="contact">
         <div class="container contact-container">
           <div class="reveal-3d text-center">
             <h2 class="section-title">JOIN THE FUTURE</h2>
@@ -175,6 +192,7 @@
               <div class="mt-4">
                 <p class="card-text">Email: talent@unitymodels.ai</p>
                 <p class="card-text">Global Headquarters, Digital First</p>
+                <p class="card-text" style="margin-top: 15px;"><a href="directors.html" style="color: #bca476; text-decoration: underline;">Casting Director Portal</a></p>
               </div>
             </div>
           </div>
@@ -184,6 +202,8 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="castings.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
