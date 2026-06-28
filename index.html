@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Unity Models Platform | AI-Powered Agency</title>
+  <meta name="description" content="Unity Models Platform - The modern modeling agency powered by Oscar AI casting assistant.">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  
+  <!-- Fonts: Cormorant Garamond (Headings) and Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Cinematic Background -->
+  <canvas id="gl-canvas"></canvas>
+  <div class="grain-overlay"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <div class="nav-logo">
+        <img src="images/logo.png" alt="Unity Models Platform" class="logo-img">
+        <span class="logo-text">UNITY MODELS</span>
+      </div>
+      <div class="nav-links desktop-only">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#services" class="nav-link">Oscar AI</a>
+        <a href="#portfolio" class="nav-link">Divisions</a>
+        <a href="#process" class="nav-link">Process</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="mobile-burger mobile-only" id="burger-menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Mobile Drawer -->
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#hero" class="drawer-link">Home</a>
+    <a href="#services" class="drawer-link">Oscar AI</a>
+    <a href="#portfolio" class="drawer-link">Divisions</a>
+    <a href="#process" class="drawer-link">Process</a>
+    <a href="#contact" class="drawer-link">Contact</a>
+  </div>
+
+  <!-- Main Scroll Container -->
+  <div id="ui-layer">
+    <div class="stage">
+      
+      <!-- Section 0: Hero -->
+      <section class="page is-active" data-index="0" id="hero">
+        <div class="container hero-container">
+          <div class="reveal-3d">
+            <h1 class="hero-title accent-text">ELEVATING <br> TALENT WITH AI</h1>
+          </div>
+          <div class="reveal-3d">
+            <p class="hero-subtitle">The first modeling agency driven by intelligent casting. Let Oscar AI find your next big booking.</p>
+          </div>
+          <div class="reveal-3d hero-actions">
+            <a href="#services" class="btn btn-primary">Discover Oscar AI</a>
+            <a href="#contact" class="btn btn-outline">Join the Agency</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 1: Services (Oscar AI) -->
+      <section class="page" data-index="1" id="services">
+        <div class="container">
+          <div class="reveal-3d">
+            <h2 class="section-title">MEET OSCAR</h2>
+            <p class="section-desc">The industry's first AI assistant that searches for casting opportunities on your behalf, 24/7.</p>
+          </div>
+          
+          <div class="grid-3 cards-grid mt-4">
+            <div class="card card-glass reveal-3d">
+              <div class="card-icon">🧠</div>
+              <h3 class="card-title">Smart Matching</h3>
+              <p class="card-text">Oscar analyzes your profile and automatically filters out irrelevant castings, bringing only the perfect matches.</p>
+            </div>
+            <div class="card card-glass reveal-3d">
+              <div class="card-icon">⚡</div>
+              <h3 class="card-title">Instant Alerts</h3>
+              <p class="card-text">Get notified in Telegram the second a matching casting director puts out a call.</p>
+            </div>
+            <div class="card card-glass reveal-3d">
+              <div class="card-icon">📈</div>
+              <h3 class="card-title">Career Growth</h3>
+              <p class="card-text">Focus on your craft and let our technology handle the endless scrolling and applications.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Portfolio / Divisions -->
+      <section class="page" data-index="2" id="portfolio">
+        <div class="container">
+          <div class="reveal-3d">
+            <h2 class="section-title">DIVISIONS</h2>
+            <p class="section-desc">Representing exceptional talent across all facets of the global fashion and commercial industry.</p>
+          </div>
+          
+          <div class="grid-2 mt-4 portfolio-grid">
+            <div class="card card-glass portfolio-card reveal-3d">
+              <h3 class="card-title accent-text">High Fashion</h3>
+              <p class="card-text">Editorial and runway talent for the world's most prestigious luxury houses.</p>
+            </div>
+            <div class="card card-glass portfolio-card reveal-3d">
+              <h3 class="card-title accent-text">Commercial</h3>
+              <p class="card-text">Relatable, charismatic faces for global brand campaigns and television.</p>
+            </div>
+            <div class="card card-glass portfolio-card reveal-3d">
+              <h3 class="card-title accent-text">Athletic & Fitness</h3>
+              <p class="card-text">Elite athletes and fitness models for sports and activewear brands.</p>
+            </div>
+            <div class="card card-glass portfolio-card reveal-3d">
+              <h3 class="card-title accent-text">Digital Creators</h3>
+              <p class="card-text">Influencers and digital talent with established engaged audiences.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Process -->
+      <section class="page" data-index="3" id="process">
+        <div class="container">
+          <div class="reveal-3d">
+            <h2 class="section-title">THE PROCESS</h2>
+            <p class="section-desc">Seamlessly integrating technology into your modeling career.</p>
+          </div>
+          
+          <div class="process-steps mt-4">
+            <div class="step reveal-3d">
+              <div class="step-number accent-text">01</div>
+              <div class="step-content">
+                <h3 class="card-title">Submit Portfolio</h3>
+                <p class="card-text">Apply to Unity Models Platform with your current book and measurements.</p>
+              </div>
+            </div>
+            <div class="step reveal-3d">
+              <div class="step-number accent-text">02</div>
+              <div class="step-content">
+                <h3 class="card-title">Connect Telegram</h3>
+                <p class="card-text">Link your profile with @casting_assist_bot to activate Oscar AI.</p>
+              </div>
+            </div>
+            <div class="step reveal-3d">
+              <div class="step-number accent-text">03</div>
+              <div class="step-content">
+                <h3 class="card-title">Book Jobs</h3>
+                <p class="card-text">Receive tailored casting calls directly to your phone and start booking.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Contact -->
+      <section class="page" data-index="4" id="contact">
+        <div class="container contact-container">
+          <div class="reveal-3d text-center">
+            <h2 class="section-title">JOIN THE FUTURE</h2>
+            <p class="section-desc">Ready to elevate your career? Connect with Oscar AI and Unity Models Platform today.</p>
+            
+            <div class="contact-actions mt-4">
+              <a href="https://t.me/casting_assist_bot" target="_blank" class="btn btn-primary btn-large">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                Launch @casting_assist_bot
+              </a>
+              <div class="mt-4">
+                <p class="card-text">Email: talent@unitymodels.ai</p>
+                <p class="card-text">Global Headquarters, Digital First</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
