@@ -47,6 +47,11 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
         if (profile.eye_color) document.getElementById('eye_color').value = profile.eye_color;
         if (profile.skills) document.getElementById('skills').value = Array.isArray(profile.skills) ? profile.skills.join(', ') : profile.skills;
         if (profile.portfolio_link) document.getElementById('portfolio_link').value = profile.portfolio_link;
+        
+        if (profile.current_location) document.getElementById('current-location').value = profile.current_location;
+        if (profile.availability_status) document.getElementById('availability-status').value = profile.availability_status;
+
+        renderGallery();
 
     } catch (err) {
         console.error('Error logging in:', err);
@@ -90,6 +95,125 @@ document.getElementById('profile-form').addEventListener('submit', async (e) => 
     } catch (err) {
         console.error('Error updating profile:', err);
         statusEl.textContent = '❌ Failed to update profile.';
+        statusEl.className = 'status-msg text-center error';
+    } finally {
+        btn.disabled = false;
+    }
+});
+
+// Render Portfolio Gallery
+function renderGallery() {
+    const gallery = document.getElementById('portfolio-gallery');
+    gallery.innerHTML = '';
+    const images = currentModelData.profile_data?.portfolio_images || [];
+    
+    images.forEach(url => {
+        const div = document.createElement('div');
+        div.className = 'portfolio-img-container';
+        div.innerHTML = `<img src="${url}" alt="Portfolio Image">`;
+        gallery.appendChild(div);
+    });
+}
+
+// Handle Photo Upload
+document.getElementById('btn-upload').addEventListener('click', async (e) => {
+    e.preventDefault();
+    const statusEl = document.getElementById('upload-status');
+    const fileInput = document.getElementById('photo-upload');
+    const files = fileInput.files;
+
+    if (files.length === 0) {
+        statusEl.textContent = 'Please select files to upload.';
+        statusEl.className = 'status-msg text-center error';
+        return;
+    }
+
+    statusEl.textContent = 'Uploading...';
+    statusEl.className = 'status-msg text-center';
+    e.target.disabled = true;
+
+    try {
+        let uploadedUrls = currentModelData.profile_data?.portfolio_images || [];
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const fileExt = file.name.split('.').pop();
+            const fileName = `${currentTelegramId}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+            
+            const { data, error } = await supabase.storage
+                .from('portfolios')
+                .upload(fileName, file);
+
+            if (error) throw error;
+
+            const { data: publicUrlData } = supabase.storage
+                .from('portfolios')
+                .getPublicUrl(fileName);
+
+            uploadedUrls.push(publicUrlData.publicUrl);
+        }
+
+        // Update DB
+        const updatedProfileData = {
+            ...currentModelData.profile_data,
+            portfolio_images: uploadedUrls
+        };
+
+        const { error: dbError } = await supabase
+            .from('models')
+            .update({ profile_data: updatedProfileData })
+            .eq('telegram_id', currentTelegramId);
+            
+        if (dbError) throw dbError;
+
+        currentModelData.profile_data = updatedProfileData;
+        renderGallery();
+        
+        statusEl.textContent = '✅ Photos uploaded successfully!';
+        statusEl.className = 'status-msg text-center success';
+        fileInput.value = ''; // clear
+    } catch (err) {
+        console.error('Error uploading:', err);
+        statusEl.textContent = '❌ Upload failed. Ensure the "portfolios" bucket exists.';
+        statusEl.className = 'status-msg text-center error';
+    } finally {
+        e.target.disabled = false;
+    }
+});
+
+// Handle Calendar Update
+document.getElementById('calendar-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const statusEl = document.getElementById('calendar-status');
+    const btn = e.target.querySelector('button');
+    
+    statusEl.textContent = 'Updating...';
+    statusEl.className = 'status-msg text-center';
+    btn.disabled = true;
+
+    const location = document.getElementById('current-location').value;
+    const status = document.getElementById('availability-status').value;
+
+    const updatedProfileData = {
+        ...currentModelData.profile_data,
+        current_location: location,
+        availability_status: status
+    };
+
+    try {
+        const { error } = await supabase
+            .from('models')
+            .update({ profile_data: updatedProfileData })
+            .eq('telegram_id', currentTelegramId);
+
+        if (error) throw error;
+        currentModelData.profile_data = updatedProfileData;
+
+        statusEl.textContent = '✅ Availability updated!';
+        statusEl.className = 'status-msg text-center success';
+    } catch (err) {
+        console.error('Error updating calendar:', err);
+        statusEl.textContent = '❌ Failed to update availability.';
         statusEl.className = 'status-msg text-center error';
     } finally {
         btn.disabled = false;
